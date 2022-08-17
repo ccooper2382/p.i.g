@@ -20,19 +20,35 @@ function App() {
 
     const handlePlayerTwoNameChange = (event) => {
         setPlayerTwoName(event.target.value)
+console.log(playerTwoName)
     }
+
+    //inclusive random number generator
+    const rollEm = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+    const handleCurrentRollChange = (rollEm) => {
+
+        setCurrentRoll( 100 )
+        console.log(currentRoll)
+
+    }
+
 
     return (
         <div className="App">
             <PlayerTile name={playerOneName}
                         score={playerOneScore}
                         turn={playerOneTurn}
-                        onChange={handlePlayerOneNameChange}/>
+                        onChange={handlePlayerOneNameChange}
+            onRoll={handleCurrentRollChange}/>
             <CurrentRoll value={currentRoll}/>
             <PlayerTile name={playerTwoName}
                         score={playerTwoScore}
                         turn={playerTwoTurn}
-                        onChange={handlePlayerTwoNameChange}/>
+                        onChange={handlePlayerTwoNameChange}
+                        onRoll={handleCurrentRollChange}/>
 
         </div>
     );

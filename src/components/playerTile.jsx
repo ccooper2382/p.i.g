@@ -1,7 +1,7 @@
 import React from 'react';
 
 function PlayerTile(props) {
-    console.log(props.name)
+
     return (
         <div>
             <form>
@@ -16,7 +16,7 @@ function PlayerTile(props) {
                     <h1>Current Score</h1>
                     <div>{props.score}</div>
                 </div>
-                <button>Roll</button>
+                <button onClick={props.onRoll}>Roll</button>
             </form>
         </div>
     );
