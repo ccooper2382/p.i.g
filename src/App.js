@@ -4,6 +4,7 @@ import PlayerTile from "./components/playerTile";
 import CurrentRoll from "./components/currentRoll";
 
 function App() {
+
     const [playerOneName, setPlayerOneName] = useState("")
     const [playerOneScore, setPlayerOneScore] = useState(0)
     const [playerOneTurn, setPlayerOneTurn] = useState(true)
@@ -28,11 +29,8 @@ console.log(playerTwoName)
         return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
 
-    const handleCurrentRollChange = (rollEm) => {
-
-        setCurrentRoll( 100 )
-        console.log(currentRoll)
-
+    const handleCurrentRollChange = () => {
+        setCurrentRoll(rollEm(1,6))
     }
 
 

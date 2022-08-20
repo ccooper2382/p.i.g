@@ -12,12 +12,12 @@ function PlayerTile(props) {
                        placeholder="Enter Name"
                        value={props.name}
                        onChange={props.onChange}/>
-                <div>
-                    <h1>Current Score</h1>
-                    <div>{props.score}</div>
-                </div>
-                <button onClick={props.onRoll}>Roll</button>
             </form>
+            <div>
+                <h1>Current Score</h1>
+                <div>{props.score}</div>
+            </div>
+            <button onClick={props.onRoll}>Roll</button>
         </div>
     );
 }
