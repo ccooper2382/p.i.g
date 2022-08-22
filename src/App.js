@@ -21,7 +21,6 @@ function App() {
 
     const handlePlayerTwoNameChange = (event) => {
         setPlayerTwoName(event.target.value)
-console.log(playerTwoName)
     }
 
     //inclusive random number generator
@@ -31,6 +30,21 @@ console.log(playerTwoName)
 
     const handleCurrentRollChange = () => {
         setCurrentRoll(rollEm(1,6))
+
+    }
+
+    // Changes the players turns when currentRoll is 1
+    if (currentRoll === 1) {
+        if (playerOneTurn && !playerTwoTurn) {
+            setPlayerOneTurn(false)
+            setPlayerTwoTurn(true)
+            setCurrentRoll(0)
+        } else {
+            setPlayerOneTurn(true)
+            setPlayerTwoTurn(false)
+            setCurrentRoll(0)
+        }
+
     }
 
 
@@ -40,7 +54,7 @@ console.log(playerTwoName)
                         score={playerOneScore}
                         turn={playerOneTurn}
                         onChange={handlePlayerOneNameChange}
-            onRoll={handleCurrentRollChange}/>
+                        onRoll={handleCurrentRollChange}/>
             <CurrentRoll value={currentRoll}/>
             <PlayerTile name={playerTwoName}
                         score={playerTwoScore}

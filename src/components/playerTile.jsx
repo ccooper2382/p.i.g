@@ -1,4 +1,5 @@
 import React from 'react';
+import RollButton from "./rollButton";
 
 function PlayerTile(props) {
 
@@ -17,7 +18,8 @@ function PlayerTile(props) {
                 <h1>Current Score</h1>
                 <div>{props.score}</div>
             </div>
-            <button onClick={props.onRoll}>Roll</button>
+            <RollButton turn={props.turn}
+                        onRoll={props.onRoll}/>
         </div>
     );
 }
