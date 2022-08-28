@@ -1,5 +1,6 @@
 import React from 'react';
 import RollButton from "./rollButton";
+import SaveScoreButton from "./saveScoreButton";
 
 function PlayerTile(props) {
 
@@ -20,6 +21,7 @@ function PlayerTile(props) {
             </div>
             <RollButton turn={props.turn}
                         onRoll={props.onRoll}/>
+            <SaveScoreButton onSave = {props.onSave} />
         </div>
     );
 }

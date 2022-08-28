@@ -7,6 +7,7 @@ function CurrentRoll({value}) {
         <div>
             <h1>Current Roll</h1>
             <div>{value}</div>
+
         </div>
     );
 }
