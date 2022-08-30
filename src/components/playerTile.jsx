@@ -2,7 +2,7 @@ import React from 'react';
 import RollButton from "./rollButton";
 import SaveScoreButton from "./saveScoreButton";
 
-function PlayerTile(props) {
+function PlayerTile({name, score, turn, onRoll, onSave, onChange}) {
 
     return (
         <div>
@@ -12,16 +12,16 @@ function PlayerTile(props) {
                        id="playerName"
                        name="playerName"
                        placeholder="Enter Name"
-                       value={props.name}
-                       onChange={props.onChange}/>
+                       value={name}
+                       onChange={onChange}/>
             </form>
             <div>
                 <h1>Current Score</h1>
-                <div>{props.score}</div>
+                <div>{score}</div>
             </div>
-            <RollButton turn={props.turn}
-                        onRoll={props.onRoll}/>
-            <SaveScoreButton onSave = {props.onSave} />
+            <RollButton turn={turn}
+                        onRoll={onRoll}/>
+            <SaveScoreButton onSave = {onSave} />
         </div>
     );
 }

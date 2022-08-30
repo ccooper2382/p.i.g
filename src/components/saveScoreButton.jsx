@@ -1,8 +1,8 @@
 import React from 'react';
 
-function SaveScoreButton(props) {
+function SaveScoreButton({onSave}) {
     return (
-        <button onClick={props.onSave}>Save Score and End Turn</button>
+        <button onClick={onSave}>Save Score and End Turn</button>
     );
 }
 
