@@ -13,7 +13,7 @@ function PlayerTile({name, score, turn, onRoll, onSave, onChange}) {
                        name="playerName"
                        placeholder="Enter Name"
                        value={name}
-                       onChange={onChange}/>
+                       />
             </form>
             <div>
                 <h1>Current Score</h1>

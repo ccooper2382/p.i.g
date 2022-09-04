@@ -3,6 +3,7 @@ import {useState} from "react";
 import PlayerTile from "./components/playerTile";
 import CurrentRoll from "./components/currentRoll";
 import TotalScore from "./components/totalScore";
+import StartPage from "./components/startPage";
 
 function App() {
 
@@ -17,28 +18,29 @@ function App() {
     const [currentRoll, setCurrentRoll] = useState(0)
     const [currentTotal, setCurrentTotal] = useState(0)
 
-    const handlePlayerOneNameChange = (event) => {
-        setPlayerOneName(event.target.value)
+    const handlePlayerNameChange = (event) => {
+        if (event.target.name === "playerNameOne") {
+            setPlayerOneName(event.target.value)
+        } else {
+            setPlayerTwoName(event.target.value)
+        }
+
     }
 
-    const handlePlayerTwoNameChange = (event) => {
-        setPlayerTwoName(event.target.value)
-    }
-
-    const handleScoreSaveOne = () => {
-        setPlayerOneScore(currentTotal + playerOneScore)
-        setPlayerOneTurn(false)
-        setPlayerTwoTurn(true)
-        setCurrentTotal(0)
-        setCurrentRoll(0)
-    }
-
-    const handleScoreSaveTwo = () => {
-        setPlayerTwoScore(currentTotal + playerTwoScore)
-        setPlayerTwoTurn(false)
-        setPlayerOneTurn(true)
-        setCurrentTotal(0)
-        setCurrentRoll(0)
+    const handleScoreSave = (player) => {
+        if (player === 1) {
+            setPlayerOneScore(currentTotal + playerOneScore)
+            setPlayerOneTurn(false)
+            setPlayerTwoTurn(true)
+            setCurrentTotal(0)
+            setCurrentRoll(0)
+        } else {
+            setPlayerTwoScore(currentTotal + playerTwoScore)
+            setPlayerTwoTurn(false)
+            setPlayerOneTurn(true)
+            setCurrentTotal(0)
+            setCurrentRoll(0)
+        }
     }
 
     //inclusive random number generator
@@ -50,7 +52,6 @@ function App() {
         let roll = rollEm(1, 6)
         setCurrentRoll(roll)
         setCurrentTotal(currentTotal + roll)
-
     }
 
     // Changes the players turns when currentRoll is 1
@@ -72,20 +73,19 @@ function App() {
 
     return (
         <div className="App">
+            <StartPage onChange={handlePlayerNameChange}/>
             <PlayerTile name={playerOneName}
                         score={playerOneScore}
                         turn={playerOneTurn}
-                        onChange={handlePlayerOneNameChange}
                         onRoll={handleCurrentRollChange}
-                        onSave={handleScoreSaveOne}/>
+                        onSave={(() => handleScoreSave(1))}/>
             <CurrentRoll value={currentRoll}/>
             <TotalScore value={currentTotal}/>
             <PlayerTile name={playerTwoName}
                         score={playerTwoScore}
                         turn={playerTwoTurn}
-                        onChange={handlePlayerTwoNameChange}
                         onRoll={handleCurrentRollChange}
-                        onSave={handleScoreSaveTwo}/>
+                        onSave={(() => handleScoreSave(2))}/>
 
         </div>
     );
