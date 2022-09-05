@@ -70,6 +70,15 @@ function App() {
 
     }
 
+    const playerWins = (player) => {
+        if (player === 1) console.log("PlayerOne Wins")
+        if (player === 2) console.log("PlayerTwo Wins")
+    }
+
+    if (playerOneScore + currentTotal >= 100) playerWins(1)
+    if (playerTwoScore + currentTotal >= 100) playerWins(2)
+
+
 
     return (
         <div className="App">
