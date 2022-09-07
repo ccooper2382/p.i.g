@@ -4,6 +4,7 @@ import PlayerTile from "./components/playerTile";
 import CurrentRoll from "./components/currentRoll";
 import TotalScore from "./components/totalScore";
 import StartPage from "./components/startPage";
+import classes from "./layout.module.css";
 
 function App() {
 
@@ -81,7 +82,7 @@ function App() {
 
 
     return (
-        <div className="App">
+        <div className={classes.flexContainer}>
             <StartPage onChange={handlePlayerNameChange}/>
             <PlayerTile name={playerOneName}
                         score={playerOneScore}
