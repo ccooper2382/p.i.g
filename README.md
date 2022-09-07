@@ -1,3 +1,5 @@
+9/7/22 css modules arent working so I think I'm going to try Tailwind
+
 8/20/2022 Ok so apparently the button element has a default action of submit when it is in a form.  That is why the page kept reloading when I clicked the roll button.
 
 8/17/22 I don't know what I'm doing wrong.  I can update the state but it imediatly reverts to the initial state after I click the roll button or if I press enter.  It also seems to load 4 times whenever anything changes
