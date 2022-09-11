@@ -4,7 +4,7 @@ function CurrentRoll({value}) {
 
 
     return (
-        <div>
+        <div className="w-1/6">
             <h1>Current Roll</h1>
             <div>{value}</div>
 

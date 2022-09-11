@@ -2,7 +2,7 @@ import React from 'react';
 
 function StartPage({onChange}) {
     return (
-        <div>
+        <div className="text-xl">
             <h1>Lets Play PIG!</h1>
             <p>On a turn, a player rolls the die repeatedly. The goal is to accumulate as many points as possible,
                 adding up the numbers rolled on the die. However, if a player rolls a 1, the player's turn is over

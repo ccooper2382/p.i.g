@@ -1,13 +1,13 @@
 import React from 'react';
 import RollButton from "./rollButton";
 import SaveScoreButton from "./saveScoreButton";
-import classes from "../layout.module.css"
+
 
 function PlayerTile({name, score, turn, onRoll, onSave}) {
 
 
     return (
-        <div className={classes.flexItem}>
+        <div className="w-1/3">
             <h2>{name}</h2>
             <div>
                 <h1>Current Score</h1>
