@@ -4,6 +4,7 @@ import PlayerTile from "./components/playerTile";
 import CurrentRoll from "./components/currentRoll";
 import TotalScore from "./components/totalScore";
 import StartPage from "./components/startPage";
+import classes from "./components/Layout.module.css"
 
 
 function App() {
@@ -82,14 +83,17 @@ function App() {
 
 
     return (
-        <div className="flex flex-row ">
+        <div className={classes.flex_container}>
             <PlayerTile name={playerOneName}
                         score={playerOneScore}
                         turn={playerOneTurn}
                         onRoll={handleCurrentRollChange}
                         onSave={(() => handleScoreSave(1))}/>
+            <div className={classes.flex_item}>
+
             <CurrentRoll value={currentRoll}/>
             <TotalScore value={currentTotal}/>
+                </div>
             <PlayerTile name={playerTwoName}
                         score={playerTwoScore}
                         turn={playerTwoTurn}

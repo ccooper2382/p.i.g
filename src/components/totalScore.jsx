@@ -1,8 +1,9 @@
 import React from 'react';
+import classes from "./Layout.module.css"
 
 function TotalScore({value}) {
     return (
-        <div className="w-1/6">
+        <div >
         <h1>Total Score</h1>
         <div>{value}</div>
         </div>
