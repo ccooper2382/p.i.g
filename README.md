@@ -1,3 +1,5 @@
+9/15/2022 css modules have seen fit to start working so that is the plan going forward.
+
 9/11/22 Finally got Tailwindcss working.  That was an ordeal mostly because I had set the output to App.css instead of index.css.  Now to figure out how to get the css to compile at the same time as the react on save so I don't have to keep backing out of npm start run  Tailwind compile then restart.
 
 9/7/22 css modules arent working so I think I'm going to try Tailwind
