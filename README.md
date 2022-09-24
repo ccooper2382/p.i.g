@@ -1,3 +1,5 @@
+9/24/2022 React Router looks like overkill so I just added an element to the state that is boolean to determing if the start page or the game itself will be displayed
+
 9/15/2022 css modules have seen fit to start working so that is the plan going forward.
 
 9/11/22 Finally got Tailwindcss working.  That was an ordeal mostly because I had set the output to App.css instead of index.css.  Now to figure out how to get the css to compile at the same time as the react on save so I don't have to keep backing out of npm start run  Tailwind compile then restart.
