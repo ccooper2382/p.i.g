@@ -1,5 +1,6 @@
 import './App.css';
 import {useState} from "react";
+import React from "react";
 import PlayerTile from "./components/playerTile";
 import CurrentRoll from "./components/currentRoll";
 import TotalScore from "./components/totalScore";
@@ -20,6 +21,9 @@ function App() {
     const [currentRoll, setCurrentRoll] = useState(0)
     const [currentTotal, setCurrentTotal] = useState(0)
 
+    const [newGame, setNewGame] = useState(false)
+
+
     const handlePlayerNameChange = (event) => {
         if (event.target.name === "playerNameOne") {
             setPlayerOneName(event.target.value)
@@ -28,6 +32,12 @@ function App() {
         }
 
     }
+
+    const handleNewGame = () => {
+        setNewGame(true)
+    }
+
+
 
     const handleScoreSave = (player) => {
         if (player === 1) {
@@ -82,8 +92,13 @@ function App() {
 
 
 
-    return (
-        <div className={classes.flex_container}>
+
+
+    if (!newGame) return <div><StartPage onClick={handleNewGame} onChange={handlePlayerNameChange} /></div>
+
+
+       return <div className={classes.flex_container}>
+
             <PlayerTile name={playerOneName}
                         score={playerOneScore}
                         turn={playerOneTurn}
@@ -101,7 +116,8 @@ function App() {
                         onSave={(() => handleScoreSave(2))}/>
 
         </div>
-    );
+
+
 }
 
 export default App;

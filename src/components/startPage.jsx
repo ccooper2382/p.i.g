@@ -1,6 +1,7 @@
 import React from 'react';
 
-function StartPage({onChange}) {
+
+function StartPage({onClick, onChange}) {
     return (
         <div className="text-xl">
             <h1>Lets Play PIG!</h1>
@@ -30,6 +31,7 @@ function StartPage({onChange}) {
                        placeholder="Enter Name"
                        onChange={onChange}/>
             </form>
+            <button onClick={onClick} >New Game</button>
         </div>
     );
 }
