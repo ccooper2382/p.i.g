@@ -1,3 +1,5 @@
+9/29/2022 Apparently when using JSON square brackets make an arrar and not an object. Tried to use a JSON string in local storage for the save game feature and spent over an hour trying to understand why everything was undefined
+
 9/24/2022 React Router looks like overkill so I just added an element to the state that is boolean to determing if the start page or the game itself will be displayed
 
 9/15/2022 css modules have seen fit to start working so that is the plan going forward.
