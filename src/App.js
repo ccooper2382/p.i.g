@@ -23,6 +23,50 @@ function App() {
 
     const [newGame, setNewGame] = useState(false)
 
+    const store = () => {
+        let data = {
+            playerOne:
+                {
+                    name: playerOneName,
+                    score: playerOneScore,
+                    turn: playerOneTurn
+                },
+
+            playerTwo:
+                {
+                    name: playerTwoName,
+                    score: playerTwoScore,
+                    turn: playerTwoTurn
+                },
+
+            score:
+                {
+                    roll: currentRoll,
+                    total: currentTotal
+                }
+
+        }
+
+        localStorage.setItem("gameData", JSON.stringify(data))
+    }
+
+    const load = () => {
+        let data = JSON.parse(localStorage.getItem("gameData"))
+        setNewGame(true)
+
+        setPlayerOneName(data.playerOne.name)
+        setPlayerTwoName(data.playerTwo.name)
+
+        setPlayerOneTurn(data.playerOne.turn)
+        setPlayerTwoTurn(data.playerTwo.turn)
+
+        setPlayerOneScore(data.playerOne.score)
+        setPlayerTwoScore(data.playerOne.score)
+
+        setCurrentRoll(data.score.roll)
+        setCurrentTotal(data.score.total)
+    }
+
 
     const handlePlayerNameChange = (event) => {
         if (event.target.name === "playerNameOne") {
@@ -36,7 +80,6 @@ function App() {
     const handleNewGame = () => {
         setNewGame(true)
     }
-
 
 
     const handleScoreSave = (player) => {
@@ -91,31 +134,29 @@ function App() {
     if (playerTwoScore + currentTotal >= 100) playerWins(2)
 
 
+    if (!newGame) return <div><StartPage load={load} onClick={handleNewGame} onChange={handlePlayerNameChange}/></div>
 
 
+    return <div className={classes.flex_container}>
 
-    if (!newGame) return <div><StartPage onClick={handleNewGame} onChange={handlePlayerNameChange} /></div>
-
-
-       return <div className={classes.flex_container}>
-
-            <PlayerTile name={playerOneName}
-                        score={playerOneScore}
-                        turn={playerOneTurn}
-                        onRoll={handleCurrentRollChange}
-                        onSave={(() => handleScoreSave(1))}/>
-            <div className={classes.flex_item}>
+        <PlayerTile name={playerOneName}
+                    score={playerOneScore}
+                    turn={playerOneTurn}
+                    onRoll={handleCurrentRollChange}
+                    onSave={(() => handleScoreSave(1))}/>
+        <div className={classes.flex_item}>
 
             <CurrentRoll value={currentRoll}/>
             <TotalScore value={currentTotal}/>
-                </div>
-            <PlayerTile name={playerTwoName}
-                        score={playerTwoScore}
-                        turn={playerTwoTurn}
-                        onRoll={handleCurrentRollChange}
-                        onSave={(() => handleScoreSave(2))}/>
-
+            <button onClick={store}>Save Game</button>
         </div>
+        <PlayerTile name={playerTwoName}
+                    score={playerTwoScore}
+                    turn={playerTwoTurn}
+                    onRoll={handleCurrentRollChange}
+                    onSave={(() => handleScoreSave(2))}/>
+
+    </div>
 
 
 }

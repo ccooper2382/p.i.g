@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function StartPage({onClick, onChange}) {
+function StartPage({onClick, onChange, load}) {
     return (
         <div className="text-xl">
             <h1>Lets Play PIG!</h1>
@@ -32,6 +32,7 @@ function StartPage({onClick, onChange}) {
                        onChange={onChange}/>
             </form>
             <button onClick={onClick} >New Game</button>
+            <button onClick={load} >Load Game</button>
         </div>
     );
 }
