@@ -1,9 +1,9 @@
 import React from 'react';
 
 function RollButton({turn, onRoll}) {
-    if (!turn) return <button className="border-b-gray-900" disabled>Roll</button>
+    if (!turn) return <button  disabled>Roll</button>
 
-    return <button className="border-b-gray-900" onClick={onRoll}>Roll</button>
+    return <button  onClick={onRoll}>Roll</button>
 
 
 }

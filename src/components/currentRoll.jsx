@@ -1,12 +1,13 @@
 import React from 'react';
+import classes from "./centerTile.module.css"
 
 function CurrentRoll({value}) {
 
 
     return (
-        <div className="w-1/6">
+        <div>
             <h1>Current Roll</h1>
-            <div>{value}</div>
+            <div className={classes.score}>{value}</div>
 
         </div>
     );
