@@ -10,6 +10,7 @@ function PlayerTile({name, score, turn, onRoll, onSave}) {
 
     return (
         <div className={classes.flex_item}>
+            <div className={classes.tile}>
             <h2>{name}</h2>
             <div>
                 <h1>Current Score</h1>
@@ -18,6 +19,7 @@ function PlayerTile({name, score, turn, onRoll, onSave}) {
             <RollButton turn={turn}
                         onRoll={onRoll}/>
             <SaveScoreButton onSave={onSave}/>
+            </div>
         </div>
     );
 }

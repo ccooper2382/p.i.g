@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from "./centerTile.module.css"
+import Die from "./die";
 
 function CurrentRoll({value}) {
 
@@ -7,7 +8,9 @@ function CurrentRoll({value}) {
     return (
         <div>
             <h1>Current Roll</h1>
-            <div className={classes.score}>{value}</div>
+            <div className={classes.roll}>
+                <Die value={value} />
+            </div>
 
         </div>
     );
