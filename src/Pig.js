@@ -6,12 +6,13 @@ import CurrentRoll from "./components/currentRoll";
 import TotalScore from "./components/totalScore";
 import StartPage from "./components/startPage";
 import classes from "./components/Layout.module.css"
+import Victory from "./components/victory";
 
 
 function Pig() {
 
     const [playerOneName, setPlayerOneName] = useState("")
-    const [playerOneScore, setPlayerOneScore] = useState(0)
+    const [playerOneScore, setPlayerOneScore] = useState(99)
     const [playerOneTurn, setPlayerOneTurn] = useState(true)
 
     const [playerTwoName, setPlayerTwoName] = useState("")
@@ -22,6 +23,9 @@ function Pig() {
     const [currentTotal, setCurrentTotal] = useState(0)
 
     const [newGame, setNewGame] = useState(false)
+
+    const [victory, setVictory] = useState(false)
+    const [winner, setWinner] = useState(null)
 
     const store = () => {
         let data = {
@@ -126,18 +130,29 @@ function Pig() {
     }
 
     const playerWins = (player) => {
-        if (player === 1) console.log("PlayerOne Wins")
-        if (player === 2) console.log("PlayerTwo Wins")
+        if (player === 1) {
+            setVictory(true)
+            setWinner(playerOneName)
+
+        } else {
+            setVictory(true)
+            setWinner(playerTwoName)
+
+        }
     }
 
     if (playerOneScore + currentTotal >= 100) playerWins(1)
     if (playerTwoScore + currentTotal >= 100) playerWins(2)
 
 
+
+
     if (!newGame) return <div><StartPage load={load} onClick={handleNewGame} onChange={handlePlayerNameChange}/></div>
 
 
     return <div className={classes.flex_container}>
+
+        <Victory victor={winner} show={victory}/>
 
         <PlayerTile name={playerOneName}
                     score={playerOneScore}
