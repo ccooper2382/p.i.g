@@ -1,13 +1,14 @@
 import React from 'react';
+import classes from "./victory.module.css"
 
-function Victory({victor, show}) {
+function Victory({victor, show, onClick}) {
 
-    if (!show) return null;
+    if (!show) return <div></div>;
 
     return (
-        <div>
+        <div className={classes.modal}>
             <h1>{`${victor} wins!`}</h1>
-            <button>New Game</button>
+            <button onClick={onClick}>New Game</button>
         </div>
     );
 }

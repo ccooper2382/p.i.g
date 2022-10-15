@@ -12,7 +12,7 @@ import Victory from "./components/victory";
 function Pig() {
 
     const [playerOneName, setPlayerOneName] = useState("")
-    const [playerOneScore, setPlayerOneScore] = useState(99)
+    const [playerOneScore, setPlayerOneScore] = useState(0)
     const [playerOneTurn, setPlayerOneTurn] = useState(true)
 
     const [playerTwoName, setPlayerTwoName] = useState("")
@@ -54,6 +54,26 @@ function Pig() {
         localStorage.setItem("gameData", JSON.stringify(data))
     }
 
+    const resetState = () => {
+        setPlayerOneScore(0);
+        setPlayerTwoScore(0)
+        setCurrentRoll(0)
+        setCurrentTotal(0)
+        setPlayerOneName("")
+        setPlayerTwoName("")
+        setVictory(false)
+        setWinner(null)
+        setNewGame(false)
+
+    }
+
+    const resetNumbers = () => {
+        setPlayerOneScore(0);
+        setPlayerTwoScore(0)
+        setCurrentRoll(0)
+        setCurrentTotal(0)
+    }
+
     const load = () => {
         let data = JSON.parse(localStorage.getItem("gameData"))
         setNewGame(true)
@@ -82,7 +102,11 @@ function Pig() {
     }
 
     const handleNewGame = () => {
-        setNewGame(true)
+        if (newGame) {
+            resetState()
+        } else {
+            setNewGame(true)
+        }
     }
 
 
@@ -134,11 +158,11 @@ function Pig() {
             setVictory(true)
             setWinner(playerOneName)
 
-        } else {
+        } else if (player === 2){
             setVictory(true)
             setWinner(playerTwoName)
-
-        }
+        }else {}
+        resetNumbers()
     }
 
     if (playerOneScore + currentTotal >= 100) playerWins(1)
@@ -152,7 +176,7 @@ function Pig() {
 
     return <div className={classes.flex_container}>
 
-        <Victory victor={winner} show={victory}/>
+        <Victory victor={winner} show={victory} onClick={handleNewGame}/>
 
         <PlayerTile name={playerOneName}
                     score={playerOneScore}
