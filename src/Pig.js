@@ -12,7 +12,7 @@ import Victory from "./components/victory";
 function Pig() {
 
     const [playerOneName, setPlayerOneName] = useState("")
-    const [playerOneScore, setPlayerOneScore] = useState(0)
+    const [playerOneScore, setPlayerOneScore] = useState(100)
     const [playerOneTurn, setPlayerOneTurn] = useState(true)
 
     const [playerTwoName, setPlayerTwoName] = useState("")

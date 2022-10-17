@@ -7,10 +7,17 @@ import classes from "./playerTile.module.css"
 
 function PlayerTile({name, score, turn, onRoll, onSave}) {
 
+    let className = ''
+    if (turn) {
+        className = classes.active
+    } else {
+        className = classes.inactive
+    }
+
 
     return (
         <div className={classes.flex_item}>
-            <div className={classes.tile}>
+            <div className={className}>
             <h2>{name}</h2>
             <div>
                 <h1>Current Score</h1>
