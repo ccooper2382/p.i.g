@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./start-page.module.css"
 
-function StartPage({onClick, onChange, load}) {
+function StartPage({onClick, onChange, load, message}) {
     return (
         <article>
             <section>
@@ -44,6 +44,7 @@ function StartPage({onClick, onChange, load}) {
                 <button onClick={onClick}>New Game</button>
                 <button onClick={load}>Load Game</button>
             </section>
+            <section>{message}</section>
         </article>
     );
 }

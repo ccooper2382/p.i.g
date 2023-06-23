@@ -9,10 +9,11 @@ import Victory from "./components/victory";
 import classes from "./components/Layout.module.css"
 
 
+
 function Pig() {
 
     const [playerOneName, setPlayerOneName] = useState("")
-    const [playerOneScore, setPlayerOneScore] = useState(100)
+    const [playerOneScore, setPlayerOneScore] = useState(99)
     const [playerOneTurn, setPlayerOneTurn] = useState(true)
 
     const [playerTwoName, setPlayerTwoName] = useState("")
@@ -27,38 +28,65 @@ function Pig() {
     const [victory, setVictory] = useState(false)
     const [winner, setWinner] = useState(null)
 
+    const [message, setMessage] = useState('')
+
     const store = () => {
-        let data = {
-            playerOne:
-                {
-                    name: playerOneName,
-                    score: playerOneScore,
-                    turn: playerOneTurn
-                },
+        try {
+            let data = {
 
-            playerTwo:
-                {
-                    name: playerTwoName,
-                    score: playerTwoScore,
-                    turn: playerTwoTurn
-                },
+                playerOne:
+                    {
+                        name: playerOneName,
+                        score: playerOneScore,
+                        turn: playerOneTurn
+                    },
 
-            score:
-                {
-                    roll: currentRoll,
-                    total: currentTotal
-                }
+                playerTwo:
+                    {
+                        name: playerTwoName,
+                        score: playerTwoScore,
+                        turn: playerTwoTurn
+                    },
 
+                score:
+                    {
+                        roll: currentRoll,
+                        total: currentTotal
+                    }
+
+            }
+
+            localStorage.setItem("gameData", JSON.stringify(data))
+        } catch (error) {
+            setMessage(`Unable to save game: ${error}`)
         }
 
-        localStorage.setItem("gameData", JSON.stringify(data))
+    }
+
+    const load = () => {
+        try {
+            let data = JSON.parse(localStorage.getItem("gameData"))
+            setNewGame(true)
+
+            setPlayerOneName(data.playerOne.name)
+            setPlayerTwoName(data.playerTwo.name)
+
+            setPlayerOneTurn(data.playerOne.turn)
+            setPlayerTwoTurn(data.playerTwo.turn)
+
+            setPlayerOneScore(data.playerOne.score)
+            setPlayerTwoScore(data.playerOne.score)
+
+            setCurrentRoll(data.score.roll)
+            setCurrentTotal(data.score.total)
+        } catch (error) {
+            setMessage(`An error occurred when loading ${error}`)
+        }
+
     }
 
     const resetState = () => {
-        setPlayerOneScore(0);
-        setPlayerTwoScore(0)
-        setCurrentRoll(0)
-        setCurrentTotal(0)
+        resetNumbers()
         setPlayerOneName("")
         setPlayerTwoName("")
         setVictory(false)
@@ -73,24 +101,6 @@ function Pig() {
         setCurrentRoll(0)
         setCurrentTotal(0)
     }
-
-    const load = () => {
-        let data = JSON.parse(localStorage.getItem("gameData"))
-        setNewGame(true)
-
-        setPlayerOneName(data.playerOne.name)
-        setPlayerTwoName(data.playerTwo.name)
-
-        setPlayerOneTurn(data.playerOne.turn)
-        setPlayerTwoTurn(data.playerTwo.turn)
-
-        setPlayerOneScore(data.playerOne.score)
-        setPlayerTwoScore(data.playerOne.score)
-
-        setCurrentRoll(data.score.roll)
-        setCurrentTotal(data.score.total)
-    }
-
 
     const handlePlayerNameChange = (event) => {
         if (event.target.name === "playerNameOne") {
@@ -168,15 +178,13 @@ function Pig() {
     if (playerOneScore + currentTotal >= 100) playerWins(1)
     if (playerTwoScore + currentTotal >= 100) playerWins(2)
 
-
-
-
-    if (!newGame) return <div><StartPage load={load} onClick={handleNewGame} onChange={handlePlayerNameChange}/></div>
-
+    if (!newGame) {
+        return <div><StartPage load={load} onClick={handleNewGame} onChange={handlePlayerNameChange} message={message}/></div>
+    } else if (victory) {
+       return <Victory victor={winner} show={victory} onClick={handleNewGame}/>
+    }
 
     return <div className={classes.flex_container}>
-
-        <Victory victor={winner} show={victory} onClick={handleNewGame}/>
 
         <PlayerTile name={playerOneName}
                     score={playerOneScore}
@@ -188,6 +196,7 @@ function Pig() {
             <CurrentRoll value={currentRoll}/>
             <TotalScore value={currentTotal}/>
             <button onClick={store}>Save Game</button>
+            <div>{message}</div>
         </div>
         <PlayerTile name={playerTwoName}
                     score={playerTwoScore}
