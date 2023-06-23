@@ -1,3 +1,5 @@
+6/23/23 Implemented error handling and did some work to get it ready for the portfolio.  Finally!
+
 10/15/2022 With that all features are working! Now I just need to...  Crap forgot validation.  Almost all features have been implemented just need to do validation (not really needed for this project but better safe than sorry) then polish up the code and see if anyone on Reddit would be willing to do a code review
 
 9/29/2022 Apparently when using JSON square brackets make an arrar and not an object. Tried to use a JSON string in local storage for the save game feature and spent over an hour trying to understand why everything was undefined
