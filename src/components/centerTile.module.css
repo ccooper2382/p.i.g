@@ -1,0 +1,9 @@
+.roll > img {
+   width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.score {
+    font-size: 5em;
+}
