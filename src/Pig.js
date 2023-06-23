@@ -1,11 +1,11 @@
 import './App.css';
 import {useState} from "react";
 import React from "react";
-import PlayerTile from "./components/playerTile";
-import CurrentRoll from "./components/currentRoll";
-import TotalScore from "./components/totalScore";
-import StartPage from "./components/startPage";
-import Victory from "./components/victory";
+import PlayerTile from "./components/playerTile/playerTile";
+import CurrentRoll from "./components/centerTile/currentRoll";
+import TotalScore from "./components/centerTile/totalScore";
+import StartPage from "./components/startPage/startPage";
+import Victory from "./components/victoryPage/victory";
 import classes from "./components/Layout.module.css"
 
 

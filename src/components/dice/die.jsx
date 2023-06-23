@@ -1,10 +1,10 @@
 import React from 'react';
-import One from "./dice/dice-1.svg"
-import Two from "./dice/dice-2.svg"
-import Three from "./dice/dice-3.svg"
-import Four from "./dice/dice-4.svg"
-import Five from "./dice/dice-5.svg"
-import Six from "./dice/dice-6.svg"
+import One from "./dice-1.svg"
+import Two from "./dice-2.svg"
+import Three from "./dice-3.svg"
+import Four from "./dice-4.svg"
+import Five from "./dice-5.svg"
+import Six from "./dice-6.svg"
 
 
 function Die({value}) {

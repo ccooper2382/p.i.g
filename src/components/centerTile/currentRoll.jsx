@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./centerTile.module.css"
-import Die from "./die";
+import Die from "../dice/die";
 
 function CurrentRoll({value}) {
 
