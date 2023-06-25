@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from "./victory.module.css"
 
 function Victory({victor, show, onClick}) {
 

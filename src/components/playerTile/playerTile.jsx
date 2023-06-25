@@ -16,7 +16,7 @@ function PlayerTile({name, score, turn, onRoll, onSave}) {
 
 
     return (
-        <div className={classes.flex_item}>
+        <section className={classes.flex_item}>
             <div className={className}>
             <h2>{name}</h2>
             <div>
@@ -27,7 +27,7 @@ function PlayerTile({name, score, turn, onRoll, onSave}) {
                         onRoll={onRoll}/>
             <SaveScoreButton onSave={onSave}/>
             </div>
-        </div>
+        </section>
     );
 }
 

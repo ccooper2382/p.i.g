@@ -2,27 +2,36 @@ import './App.css';
 import {useState} from "react";
 import React from "react";
 import PlayerTile from "./components/playerTile/playerTile";
-import CurrentRoll from "./components/centerTile/currentRoll";
-import TotalScore from "./components/centerTile/totalScore";
 import StartPage from "./components/startPage/startPage";
 import Victory from "./components/victoryPage/victory";
+import RollTile from "./components/centerTile/rollTile";
 import classes from "./components/Layout.module.css"
 
 
-
 function Pig() {
-
+    /**
+     * Player One information
+     */
     const [playerOneName, setPlayerOneName] = useState("")
-    const [playerOneScore, setPlayerOneScore] = useState(99)
+    const [playerOneScore, setPlayerOneScore] = useState(0)
     const [playerOneTurn, setPlayerOneTurn] = useState(true)
 
+    /**
+     * Player Two information
+     */
     const [playerTwoName, setPlayerTwoName] = useState("")
     const [playerTwoScore, setPlayerTwoScore] = useState(0)
     const [playerTwoTurn, setPlayerTwoTurn] = useState(false)
 
+    /**
+     * The current die roll and cumulative total of current turn's die rolls
+     */
     const [currentRoll, setCurrentRoll] = useState(0)
     const [currentTotal, setCurrentTotal] = useState(0)
 
+    /**
+     *
+     */
     const [newGame, setNewGame] = useState(false)
 
     const [victory, setVictory] = useState(false)
@@ -30,6 +39,9 @@ function Pig() {
 
     const [message, setMessage] = useState('')
 
+    /**
+     * Stores game information to local storage
+     */
     const store = () => {
         try {
             let data = {
@@ -63,6 +75,9 @@ function Pig() {
 
     }
 
+    /**
+     * Loads saved game from local storage
+     */
     const load = () => {
         try {
             let data = JSON.parse(localStorage.getItem("gameData"))
@@ -85,6 +100,9 @@ function Pig() {
 
     }
 
+    /**
+     * Resets the state to default values
+     */
     const resetState = () => {
         resetNumbers()
         setPlayerOneName("")
@@ -95,6 +113,9 @@ function Pig() {
 
     }
 
+    /**
+     * Resets player scores, currentRoll and currentTotal to zero
+     */
     const resetNumbers = () => {
         setPlayerOneScore(0);
         setPlayerTwoScore(0)
@@ -102,6 +123,10 @@ function Pig() {
         setCurrentTotal(0)
     }
 
+    /**
+     * Handler for player name entry prior to game start
+     * @param event
+     */
     const handlePlayerNameChange = (event) => {
         if (event.target.name === "playerNameOne") {
             setPlayerOneName(event.target.value)
@@ -111,6 +136,9 @@ function Pig() {
 
     }
 
+    /**
+     * handler for new game button.  starts new game
+     */
     const handleNewGame = () => {
         if (newGame) {
             resetState()
@@ -119,8 +147,12 @@ function Pig() {
         }
     }
 
-
+    /**
+     * handles the saving of a players score when holding
+     * @param player
+     */
     const handleScoreSave = (player) => {
+        //TODO consider separating these into separate functions.  Probably not necessary since they arent used anywhere else
         if (player === 1) {
             setPlayerOneScore(currentTotal + playerOneScore)
             setPlayerOneTurn(false)
@@ -136,19 +168,28 @@ function Pig() {
         }
     }
 
-    //inclusive random number generator
+    /**
+     * inclusive random number generator
+     */
+
     const rollEm = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    /**
+     * handles each roll of the dice setting the currentRoll and currentTotal
+     */
     const handleCurrentRollChange = () => {
         let roll = rollEm(1, 6)
         setCurrentRoll(roll)
         setCurrentTotal(currentTotal + roll)
     }
 
-    // Changes the players turns when currentRoll is 1
+    /**
+     * Changes the players turns when currentRoll is 1
+     */
     if (currentRoll === 1) {
+        //TODO like with handleScoreSave
         if (playerOneTurn && !playerTwoTurn) {
             setPlayerOneTurn(false)
             setPlayerTwoTurn(true)
@@ -168,10 +209,11 @@ function Pig() {
             setVictory(true)
             setWinner(playerOneName)
 
-        } else if (player === 2){
+        } else if (player === 2) {
             setVictory(true)
             setWinner(playerTwoName)
-        }else {}
+        } else {
+        }
         resetNumbers()
     }
 
@@ -179,9 +221,10 @@ function Pig() {
     if (playerTwoScore + currentTotal >= 100) playerWins(2)
 
     if (!newGame) {
-        return <div><StartPage load={load} onClick={handleNewGame} onChange={handlePlayerNameChange} message={message}/></div>
+        return <div><StartPage load={load} onClick={handleNewGame} onChange={handlePlayerNameChange} message={message}/>
+        </div>
     } else if (victory) {
-       return <Victory victor={winner} show={victory} onClick={handleNewGame}/>
+        return <Victory victor={winner} show={victory} onClick={handleNewGame}/>
     }
 
     return <div className={classes.flex_container}>
@@ -191,13 +234,10 @@ function Pig() {
                     turn={playerOneTurn}
                     onRoll={handleCurrentRollChange}
                     onSave={(() => handleScoreSave(1))}/>
-        <div className={classes.flex_item}>
-
-            <CurrentRoll value={currentRoll}/>
-            <TotalScore value={currentTotal}/>
-            <button onClick={store}>Save Game</button>
-            <div>{message}</div>
-        </div>
+        <RollTile message={message}
+                    currentTotal={currentTotal}
+                    currentRoll={currentTotal}
+                    store={store}/>
         <PlayerTile name={playerTwoName}
                     score={playerTwoScore}
                     turn={playerTwoTurn}

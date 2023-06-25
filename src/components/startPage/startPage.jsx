@@ -30,10 +30,10 @@ function StartPage({onClick, onChange, load, message}) {
                                onChange={onChange}/>
                     </div>
                     <div className={classes.input}>
-                        <label htmlFor="playerNameTwo">Player Two Name</label>
+                        <label htmlFor="playerTwoName">Player Two Name</label>
                         <input type="text"
-                               id="playerNameTwo"
-                               name="playerNameTwo"
+                               id="playerTwoName"
+                               name="playerTwoName"
                                placeholder="Enter Name"
                                onChange={onChange}/>
                     </div>
