@@ -7,7 +7,7 @@ import classes from "./playerTile.module.css"
 
 function PlayerTile({name, score, turn, onRoll, onSave}) {
 
-    let className = ''
+    let className
     if (turn) {
         className = classes.active
     } else {
